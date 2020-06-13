@@ -21,9 +21,9 @@ SO THAT I can organize my thoughts and keep track of tasks I need to complete
 ```
 i. Fork the Github repository.
 ii. Clone the forked repo into your local machine using gitbash/terminal to pull the project and data.
-iii. Run the ommand-lines below to run the app functionality. You can also access the files and assets via Visual Studio to view the code. 
-iv. Run the app command-lines.
-v. Deploy app on Heroku.
+iii. Run the command-lines below to run the app functionality. You can also access the files and assets via Visual Studio to view the code. 
+iv. Explore the app: add, save, view and/or delete notes.
+v. App deployed on Heroku.
 ```
 
 ## Process
