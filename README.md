@@ -16,7 +16,6 @@ SO THAT I can organize my thoughts and keep track of tasks I need to complete
   * [Usage](#Usage)
   * [Contributing](#Contributing)
   * [License](#License)
-  * [Tests](#Tests)
   * [Questions](#Questions)
 
 ## Installation
@@ -60,11 +59,6 @@ Pull requests are welcome. Please use the [Contributor Covenant Code of Conduct]
 
 ## License 
 [MIT](https://choosealicense.com/licenses/mit/)
-
-## Tests
-1. Run tests with `npm run test`
-2. Create or update classes to pass a single test case
-3. Repeat
 
 ## Questions  
 Have questions? Contact me at:
