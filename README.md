@@ -53,9 +53,9 @@ Express - Heroku - JavaScript - db.json - fs module - HTML Routes - API Routes -
 
 * Below is screenshot of the application:
 
-![Express Note Taker Screenshot: HTML](./Assets/expressNoteTaker_html_screenshot.png)
+![Express Note Taker Screenshot: HTML](./public/assets/images/expressNoteTaker_html_screenshot.png)
 
-![Express Note Taker Screenshot: NOTES](./Assets/expressNoteTaker_notes_screenshot.png)
+![Express Note Taker Screenshot: NOTES](./public/assets/images/expressNoteTaker_notes_screenshot.png)
 
 ## Contributing
 Pull requests are welcome. Please use the [Contributor Covenant Code of Conduct](https://www.contributor-covenant.org/version/2/0/code_of_conduct/code_of_conduct.md) and for major changes, please open an issue beforehand to discuss the changes.
