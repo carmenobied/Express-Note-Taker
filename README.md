@@ -1,7 +1,7 @@
 # Express-Note-Taker
 ![Project license badge](https://img.shields.io/badge/license-MIT-brightgreen)
 
-The goal was to create an application that can be used to write, save, and delete notes. This application uses an express backend and saves and retrieves note data from a JSON file. The process involved building the application backend and connecting it with the frontend. For users that need to keep track of a lot of information, it's easy to forget or be unable to recall something important. Therefore, being able to take persistent notes allows users to have written information available when needed.
+The goal was to create an application that can be used to write, save, and delete notes. This application uses an express backend and saves and retrieves note data from a JSON file. The process involved building the application backend and connecting it with the frontend. For users that need to keep track of a lot of information, it's easy to forget or be unable to recall something important. Being able to take persistent notes allows users to have written information available when needed.
 
 ## User Story
 ```
