@@ -51,7 +51,7 @@ Key Components Used:
 Express - Heroku - JavaScript - db.json - fs module - HTML Routes - API Routes - GET/POST requests - listener
 ```
 
-* Below is screenshot of the application:
+* Below are screenshots of the application:
 
 ![Express Note Taker Screenshot: HTML](./public/assets/images/expressNoteTaker_html_screenshot.png)
 
