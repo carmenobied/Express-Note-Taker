@@ -71,13 +71,19 @@ app.get("/api/notes/:note", function(req, res) {
      // DELETE /api/notes/:id - Should receive a query parameter containing the id of a note to delete. This means you'll need to find a way to give each note a unique id when it's saved. In order to delete a note, you'll need to read all notes from the db.json file, remove the note with the given id property, and then rewrite the notes to the db.json file.
      let data = fs.readFileSync('./db/db.json');
      let noteTaker = JSON.parse(data);
-    const notesSaved = noteTaker.filter(note => parseInt(note.id) !== parseInt(req.params.id));
-    fs.writeFileSync('./db/db.json',JSON.stringify(notesSaved));
-    res.sendFile(path.join(__dirname,'public/notes.html'));
-    // select and delete selected note
-    const index = noteTaker.indexOf(notesSaved);
-    noteTaker.splice(index);
-});
+     const notesSaved = noteTaker.find(n => n.id === parseInt(req.params.id));
+     // select and delete selected note
+     const index = noteTaker.indexOf(notesSaved);
+     noteTaker.splice(index);
+
+    //  const notesSaved = noteTaker.filter(note => parseInt(note.id) !== parseInt(req.params.id));
+    // const notesSaved = noteTaker.filter(note => parseInt(note.id) !== parseInt(req.params.id));
+    fs.writeFile(__dirname + "/db/db.json", JSON.stringify(noteTaker), (err, data) => {
+      if (err) throw err;
+      //send response back to client
+      res.json(noteTaker)    
+    }); 
+  });
 
 
 //HTML Routes
