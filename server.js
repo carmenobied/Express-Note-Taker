@@ -74,6 +74,9 @@ app.get("/api/notes/:note", function(req, res) {
     const notesSaved = noteTaker.filter(note => parseInt(note.id) !== parseInt(req.params.id));
     fs.writeFileSync('./db/db.json',JSON.stringify(notesSaved));
     res.sendFile(path.join(__dirname,'public/notes.html'));
+    // select and delete selected note
+    const index = noteTaker.indexOf(notesSaved);
+    noteTaker.splice(index);
 });
 
 
