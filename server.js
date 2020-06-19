@@ -14,16 +14,17 @@ var PORT = process.env.PORT || 3000;
 // Middleware sets up the Express app to find/use files and handle data parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+// static path 
 app.use(express.static(path.join(__dirname, 'public')));
-
 
 // API Routes
 // =============================================================
 
 // GET /api/notes
-  // Should read the db.json file and return all saved notes as JSON. // Basic route that sends the user first to the AJAX Page
+  // Basic route that sends the user first to the AJAX Page
 
-  app.get('/', (req, res) => {
+app.get('/', (req, res) => {
+  // "__dirname" is a global obj and gives you the path of the currently running file
     res.sendFile(path.join(__dirname,'public/index.html'));
 });
 
@@ -31,12 +32,12 @@ app.get('/notes', (req, res) => {
     res.sendFile(path.join(__dirname,'public/notes.html'));
 });
 
-// Displays all notes
+// Read the db.json file and displays all the saved notes
 app.get('/api/notes', (req, res) => {
   res.sendFile(path.join(__dirname,'db/db.json'));
 });
 
-// Displays a single note, or returns false
+// Display a single note
 app.get("/api/notes/:note", function(req, res) {
   var noteSelect = req.params.note;
   console.log(noteSelect);
@@ -44,44 +45,47 @@ app.get("/api/notes/:note", function(req, res) {
 });
 
 // POST /api/notes
-  // Should receive a new note to save on the request body, add it to the db.json file, and then return the new note to the client. // Create New Notes - takes in JSON input
 
   app.post("/api/notes", (req, res) => {
-    // req.body hosts is equal to the JSON post sent from the user; this works because of our body parsing middleware
+    // Should receive a new note to save on the request body
+    // Note: req.body hosts is equal to the JSON post sent from the user; this works because of our body parsing middleware
     const addedNote = req.body;
+    // Add it to the db.json file, i.e. JSON database where we can send requests
     let data = fs.readFileSync('./db/db.json');
+    // Create new notes - takes in JSON input and parses the data
     let noteTaker = JSON.parse(data);
     // Push addedNote to array
     noteTaker.push(addedNote);
-    // Write new array 
+    // Write and stringify new array
     fs.writeFileSync('./db/db.json',JSON.stringify(noteTaker), (err, data) => {
       if (err) throw err;
       res.json(noteTaker)      
     }); 
+    // send the new added note/response back to the client
     res.sendFile(path.join(__dirname,'public/notes.html'));
 });
 
 // DELETE /api/notes
-  // DELETE /api/notes/:id - Should receive a query parameter containing the id of a note to delete. This means you'll need to find a way to give each note a unique id when it's saved. 
-  // Note: To delete a note, need to read all notes from the db.json file, remove the note with the given id property, and then rewrite the notes to the db.json file.
+  // DELETE /api/notes/:id - Should receive a query parameter containing the id of a note to delete. 
 
   app.delete("/api/notes/:id", (req, res) => {
-     // DELETE /api/notes/:id - Should receive a query parameter containing the id of a note to delete. This means you'll need to find a way to give each note a unique id when it's saved. In order to delete a note, you'll need to read all notes from the db.json file, remove the note with the given id property, and then rewrite the notes to the db.json file.
+     // Each note is given a unique id when it's saved
+     // To delete a note, read all notes from the db.json file
      let data = fs.readFileSync('./db/db.json');
      let noteTaker = JSON.parse(data);
      // const notesSaved = noteTaker.filter(note => parseInt(note.id) !== parseInt(req.params.id));
      const notesSaved = noteTaker.find(n => n.id === parseInt(req.params.id));
-     // select and delete selected note
-     const index = noteTaker.indexOf(notesSaved);
-     noteTaker.splice(index);
+     // select and delete selected note by removing the note with the given id property
+     const notesIndex = noteTaker.indexOf(notesSaved);
+     noteTaker.splice(notesIndex);
 
+    // rewrite the notes to the db.json file
     fs.writeFile(__dirname + "/db/db.json", JSON.stringify(noteTaker), (err, data) => {
       if (err) throw err;
       //send response back to client
       res.json(noteTaker)    
     }); 
   });
-
 
 //HTML Routes
 // =============================================================
