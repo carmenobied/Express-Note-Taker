@@ -46,24 +46,26 @@ app.get("/api/notes/:note", function(req, res) {
 
 // POST /api/notes
 
-  app.post("/api/notes", (req, res) => {
-    // Should receive a new note to save on the request body
-    // req.body hosts is equal to the JSON post sent from the user; this works because of our body parsing middleware
-    const addedNote = req.body;
-    // Add it to the db.json file, i.e. JSON database where we can send requests
-    let noteData = fs.readFileSync('./db/db.json');
-    // Create new notes - takes in JSON input and parses the data
-    let noteTaker = JSON.parse(noteData);
-        // Push addedNote to array
-        noteTaker.push(addedNote);
-        // Write and stringify new array
-        fs.writeFileSync('./db/db.json',JSON.stringify(noteTaker), (err, data) => {
-          if (err) throw err;
-          res.json(noteTaker)      
-        }); 
-        // send the new added note/response back to the client
-        res.sendFile(path.join(__dirname,'public/notes.html'));
-    });
+    app.post("/api/notes", (req, res) => {
+      // Should receive a new note to save on the request body
+      // Note: req.body hosts is equal to the JSON post sent from the user; this works because of our body parsing middleware
+      const addedNote = req.body;
+      // create a unique identifier with Date.now()
+      addedNote.id = new Date.now();
+      // Add it to the db.json file, i.e. JSON database where we can send requests
+      let noteData = fs.readFile('./db/db.json');
+      // Create new notes - takes in JSON input and parses the data
+      let noteTaker = JSON.parse(noteData);
+      // Push addedNote to array
+      noteTaker.push(req.body);
+      // Write and stringify new array
+      fs.writeFile('./db/db.json',JSON.stringify(noteTaker), (err, data) => {
+        if (err) throw err;
+        res.json(noteTaker)      
+      }); 
+      // send the new added note/response back to the client
+      res.sendFile(path.join(__dirname,'public/notes.html'));
+  });
 
 // DELETE /api/notes
   // DELETE /api/notes/:id - Should receive a query parameter containing the id of a note to delete. 
@@ -71,7 +73,7 @@ app.get("/api/notes/:note", function(req, res) {
   app.delete("/api/notes/:id", (req, res) => {
      // Each note is given a unique id when it's saved
      // To delete a note, read all notes from the db.json file
-     let noteData = fs.readFileSync('./db/db.json');
+     let noteData = fs.readFile('./db/db.json');
      let noteTaker = JSON.parse(noteData);
      // const notesSaved = noteTaker.filter(note => parseInt(note.id) !== parseInt(req.params.id));
      const notesSaved = noteTaker.find(n => n.id === parseInt(req.params.id));
