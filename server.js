@@ -53,13 +53,13 @@ app.get("/api/notes/:note", function(req, res) {
       // create a unique identifier with Date.now()
       addedNote.id = new Date.now();
       // Add it to the db.json file, i.e. JSON database where we can send requests
-      let noteData = fs.readFile('./db/db.json');
+      let noteData = fs.readFileSync('./db/db.json');
       // Create new notes - takes in JSON input and parses the data
       let noteTaker = JSON.parse(noteData);
       // Push addedNote to array
       noteTaker.push(req.body);
       // Write and stringify new array
-      fs.writeFile('./db/db.json',JSON.stringify(noteTaker), (err, data) => {
+      fs.writeFileSync('./db/db.json',JSON.stringify(noteTaker), (err, data) => {
         if (err) throw err;
         res.json(noteTaker)      
       }); 
@@ -73,7 +73,7 @@ app.get("/api/notes/:note", function(req, res) {
   app.delete("/api/notes/:id", (req, res) => {
      // Each note is given a unique id when it's saved
      // To delete a note, read all notes from the db.json file
-     let noteData = fs.readFile('./db/db.json');
+     let noteData = fs.readFileSync('./db/db.json');
      let noteTaker = JSON.parse(noteData);
      // const notesSaved = noteTaker.filter(note => parseInt(note.id) !== parseInt(req.params.id));
      const notesSaved = noteTaker.find(n => n.id === parseInt(req.params.id));
