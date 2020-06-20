@@ -37,7 +37,7 @@ Express - Heroku - JavaScript - db.json - fs module - HTML Routes - API Routes -
 
 ![Express Note Taker Screenshot: HTML](./public/assets/images/expressNoteTaker_html_screenshot.png)
 
-![Express Note Taker Screenshot: NOTES](./public/assets/images/noteTaker_heroku.png)
+![Express Note Taker Screenshot: NOTES](./public/assets/images/NoteTaker_heroku.png)
 
 Ensured the following app functionality: 
 * Application should allow users to create and save notes.
