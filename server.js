@@ -51,7 +51,7 @@ app.get("/api/notes/:note", function(req, res) {
       // Note: req.body hosts is equal to the JSON post sent from the user; this works because of our body parsing middleware
       const addedNote = req.body;
       // create a unique identifier with Date.now()
-      addedNote.id = new Date.now();
+      addedNote.id = Date.now();
       // Add it to the db.json file, i.e. JSON database where we can send requests
       let noteData = fs.readFileSync('./db/db.json');
       // Create new notes - takes in JSON input and parses the data
