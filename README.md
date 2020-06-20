@@ -33,10 +33,11 @@ v. App deployed on Heroku.
 Key Components Used:
 Express - Heroku - JavaScript - db.json - fs module - HTML Routes - API Routes - GET/POST requests - listener
 ```
-* Below are screenshots of the application:
+* Below are screenshots of the deployed application:
 
 ![Express Note Taker Screenshot: HTML](./public/assets/images/expressNoteTaker_html_screenshot.png)
 
+* Screenshot of deployed app in Heroku:
 ![Express Note Taker Screenshot: NOTES](./public/assets/images/NoteTaker_heroku.png)
 
 Ensured the following app functionality: 
